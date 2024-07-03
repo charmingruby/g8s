@@ -1,0 +1,5 @@
+@baseUrl = http://localhost:3333/api/v1
+
+# @name ping
+GET {{baseUrl}}/ping
+Content-Type: application/json

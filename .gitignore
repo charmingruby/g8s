@@ -1,0 +1,8 @@
+# temporary files
+tmp
+
+# environment variables
+.env
+
+# binaries
+bin
