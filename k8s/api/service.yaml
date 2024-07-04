@@ -6,9 +6,9 @@ metadata:
 spec:
   selector:
     app: api
-  type: ClusterIP
   ports:
-  - name: api
-    protocol: TCP
-    port: 80
-    targetPort: 3333
+    - name: api
+      protocol: TCP
+      port: 3000
+      targetPort: 3333
+  type: LoadBalancer
