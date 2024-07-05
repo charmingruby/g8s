@@ -4,4 +4,4 @@ metadata:
   name: {{ .Release.Name }}-api-cm
   namespace: {{ .Values.namespace }}
 data:
-  SERVER_PORT: {{ .Values.api.port }}
+  SERVER_PORT: {{ .Values.api.port | quote }}
