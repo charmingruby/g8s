@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api
+  name: g8s-api
   namespace: g8s
   labels: 
-    app: api
+    app: g8s-api
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: api
+      app: g8s-api
   template:
     metadata:
       labels:
-        app: api
+        app: g8s-api
     spec:
       containers:
-      - name: api
+      - name: g8s-api
         image: charmingruby/g8s:0.0.1
         ports:
           - containerPort: 3333
         envFrom:
           - configMapRef:
-              name: api-cm
+              name: g8s-api-cm
         resources:
           requests:
             cpu: "50m"

@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata: 
-  name: api
+  name: g8s-api-ing
   namespace: g8s
 spec:
   rules:
@@ -12,6 +12,6 @@ spec:
         path: "/"
         backend:
           service:
-            name: api
+            name: g8s-api-svc
             port: 
               number: 3000

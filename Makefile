@@ -25,3 +25,10 @@ docker-push:
 .PHONY: docker-run
 docker-run:
 	docker run -p $(PORT):$(PORT) ${DOCKER_IMAGE_NAME}
+
+################
+# API          #
+################
+.PHONY: ping
+ping: 
+	curl http://api.g8s.dev/api/v1/ping

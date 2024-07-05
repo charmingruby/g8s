@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: api-cm
+  name: g8s-api-cm
   namespace: g8s
 data:
   SERVER_PORT: "3333"
