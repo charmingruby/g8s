@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: { { .Values.common.app } }
+  namespace: { { .Values.common.namespace } }
+  labels:
+    app: { { .Values.common.app } }
+spec:
+  replicas: {{ .Values.common.replicas }}
+  selector:
+    matchLabels:
+      app: { { .Values.common.app } }
+  template:
+    metadata:
+      labels:
+        app: { { .Values.common.app } }
+    spec:
+      containers:
+        - name: { { .Values.common.app } }
+          image: charmingruby/g8s:{{ .Values.common.image_version }}
+          ports:
+            - containerPort: { { .Values.common.port } }
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.common.app }}-cm
+          resources:
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}
+            limits:
+              memory: {{ .Values.resources.limits.memory }}
+              cpu: {{ .Values.resources.limits.cpu }}

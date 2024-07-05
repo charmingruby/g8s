@@ -1,0 +1,16 @@
+{{- range .Values.services }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ app }}-svc
+  namespace: { { .Values.common.namespace } }
+spec:
+  selector:
+    app: {{ app }}
+  ports:
+    - name: {{ app }}
+      protocol: TCP
+      port: {{ port }}
+      targetPort: {{ targetPort }}
+  type: LoadBalancer
+{{- end }}

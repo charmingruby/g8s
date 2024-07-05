@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.common.app }}-cm
+  namespace: {{ .Values.common.namespace }}
+data:
+  SERVER_PORT: {{ .Values.common.port }}

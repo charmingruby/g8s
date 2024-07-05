@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: { { .Values.common.app } }
+  namespace: { { .Values.common.namespace } }
+spec:
+  rules:
+    - host: { { .Values.common.host } }
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: { { .Values.common.svc.name } }
+                port:
+                  number: { { .Values.common.svc.port } }

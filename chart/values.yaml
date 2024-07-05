@@ -1,0 +1,23 @@
+common:
+  app: api
+  namespace: g8s
+  image_version: 0.0.1
+  port: 3333
+  replicas: 3
+  host: api.g8s.dev
+  svc:
+    name: api
+    port: 80 
+
+services:
+  - app: api
+    port: 80
+    targetPort: 3333
+   
+resources:
+  requests:
+    cpu: "50m"
+    memory: "64Mi"
+  limits:
+    memory: "512Mi"
+    cpu: "100m"
