@@ -1,16 +1,18 @@
-{{- range .Values.services }}
+{{- $services := dict "api" .Values.api -}}
+{{- range $svc, $values := $services }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ app }}-svc
-  namespace: { { .Values.common.namespace } }
+  name: {{$.Release.Name}}-{{ $svc }}-svc
+  namespace: {{ $.Values.namespace }}
 spec:
   selector:
-    app: {{ app }}
+    app: {{$.Release.Name}}-{{ $svc }}
   ports:
-    - name: {{ app }}
+    - name: {{ $svc }}
       protocol: TCP
-      port: {{ port }}
-      targetPort: {{ targetPort }}
+      port: {{ $values.svc.port }}
+      targetPort: {{ $values.port }}
   type: LoadBalancer
+---
 {{- end }}

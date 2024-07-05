@@ -1,32 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: { { .Values.common.app } }
-  namespace: { { .Values.common.namespace } }
+  name: {{ .Release.Name }}-api
+  namespace: {{ .Values.namespace }}
   labels:
-    app: { { .Values.common.app } }
+    app: {{ .Release.Name }}-api
 spec:
-  replicas: {{ .Values.common.replicas }}
+  replicas: {{ .Values.api.replicas }}
   selector:
     matchLabels:
-      app: { { .Values.common.app } }
+      app: {{ .Release.Name }}-api
   template:
     metadata:
       labels:
-        app: { { .Values.common.app } }
+        app: {{ .Release.Name }}
     spec:
       containers:
-        - name: { { .Values.common.app } }
-          image: charmingruby/g8s:{{ .Values.common.image_version }}
+        - name: {{ .Release.Name }}
+          image: charmingruby/g8s:{{ .Values.api.image_version }}
           ports:
-            - containerPort: { { .Values.common.port } }
+            - containerPort: {{ .Values.api.port }}
           envFrom:
             - configMapRef:
-                name: {{ .Values.common.app }}-cm
+                name: {{ .Release.Name }}-api-cm
           resources:
             requests:
-              cpu: {{ .Values.resources.requests.cpu }}
-              memory: {{ .Values.resources.requests.memory }}
+              cpu: {{ .Values.api.resources.requests.cpu }}
+              memory: {{ .Values.api.resources.requests.memory }}
             limits:
-              memory: {{ .Values.resources.limits.memory }}
-              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.api.resources.limits.memory }}
+              cpu: {{ .Values.api.resources.limits.cpu }}
